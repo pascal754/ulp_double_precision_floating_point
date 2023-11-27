@@ -107,9 +107,32 @@ test_add_upward                 27.0 ns         13.6 ns     44800000
 test_add_downward               26.8 ns         18.1 ns     56000000
 test_fesetround                 13.5 ns         4.12 ns    159288889
 ```
-
 In the latest hardware and language version, a custom function to find ulp is faster than built-in functions and calculations in the different floating-point rounding mode.
 
+However, the same code was tested with gcc in Linux and `std::nextafter` showed the same performance as the custom function.
+
+```
+Run on (12 X 4600 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x6)
+  L1 Instruction 32 KiB (x6)
+  L2 Unified 1280 KiB (x6)
+  L3 Unified 18432 KiB (x1)
+Load Average: 0.15, 0.15, 0.13
+***WARNING*** CPU scaling is enabled, the benchmark real time measurements may be noisy and will incur extra overhead.
+
+value = 3.14
+--------------------------------------------------------------------
+Benchmark                          Time             CPU   Iterations
+--------------------------------------------------------------------
+ulp_bit_cast                   0.150 ns        0.149 ns   1000000000
+ulp_bit_cast_lookup_table      0.148 ns        0.148 ns   1000000000
+add_ulp                        0.147 ns        0.147 ns   1000000000
+nextafter                      0.147 ns        0.147 ns   1000000000
+test_add_upward                 11.2 ns         11.1 ns     62716459
+test_add_downward               11.2 ns         11.2 ns     62742923
+test_fesetround                 5.62 ns         5.62 ns    124051425
+```
 ## Development Environments
 
 - CPU: Intel i5 12th Gen
