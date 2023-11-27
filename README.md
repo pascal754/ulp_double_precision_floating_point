@@ -109,7 +109,7 @@ test_fesetround                 13.5 ns         4.12 ns    159288889
 ```
 In the latest hardware and language version, a custom function to find ulp is faster than built-in functions and calculations in the different floating-point rounding mode.
 
-However, the same code was tested with gcc in Linux and `std::nextafter` showed the same performance as the custom function.
+However, the same code was tested with gcc in Linux and `std::nextafter` showed a similar performance as the custom function.
 
 ```
 Run on (12 X 4600 MHz CPU s)
