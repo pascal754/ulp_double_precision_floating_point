@@ -3,15 +3,17 @@
 - Efficient and reliable methods for rounded-interval arithmetic. S. L. Abrams, W. Cho, C.-Y. Hu, T. Maekawa, N. M. Patrikalakis, E. C. Sherbrooke and X. Ye. Computer-Aided Design, Vol. 30, No. 8, pp. 657-665, July 1998.
 
 
-In the aforementioned paper, the authors presented an algorithm to find ulp for double precision floating numbers and compared execution time with built-in functions and hardware rounding mode calculations.
+In the aforementioned paper, the authors presented algorithms to find ulp for double precision floating-point numbers and compared execution time with built-in functions and hardware rounding mode calculations.
 
 `union`s are often used for type punning but it is not a recommended practice.
+
 C.183: Don’t use a union for type punning (https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#c183-dont-use-a-union-for-type-punning)
+
 cppreference.com (https://en.cppreference.com/w/cpp/language/union#Explanation)
 
 `std::nextafter` and `std::bit_cast` were introduced in `C++11` and `C++20`, respectively.
 
-A function to find ulp was written using `std::bit_cast` and compared with `std::nextafter` and calculations in other floating rounding modes.
+A function to find ulp was written using `std::bit_cast` and compared with `std::nextafter` and calculations with `std::fesetround`.
 
 ```cpp
 double get_ulp_bit_cast(double x)
@@ -110,23 +112,28 @@ In the latest hardware and language version, a custom function to find ulp is fa
 
 ## Development Environments
 
-CPU: Intel i5 12th Gen
-OS: Windows 11
-Compiler: Microsoft Visual Studio (64-bit) Version 17.9.0 Preview 1.0
+- CPU: Intel i5 12th Gen
 
-## library via vcpkg
+- OS: Windows 11
 
-benchmark:x64-windows 1.8.3
+- Compiler: Microsoft Visual Studio (64-bit) Version 17.9.0 Preview 1.0
+
+## Library via vcpkg
+
+- benchmark:x64-windows 1.8.3
+
+## Extra Settings
 
 Google benchmark is not out of the box. The following settings are needed.
 
 ![benchmark](benchmark.png)
+
 ![shlwapi](shlwapi.png)
 
 ## References:
 
-- IEEE 754 https://en.wikipedia.org/wiki/IEEE_754
+- IEEE 754 (https://en.wikipedia.org/wiki/IEEE_754)
 
-- Double-precision floating-point format https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+- Double-precision floating-point format (https://en.wikipedia.org/wiki/Double-precision_floating-point_format)
 
-- Unit in the last place https://en.wikipedia.org/wiki/Unit_in_the_last_place
+- Unit in the last place (https://en.wikipedia.org/wiki/Unit_in_the_last_place)
